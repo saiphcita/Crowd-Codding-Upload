@@ -36,7 +36,7 @@ class Upload extends Component {
                 </div>
 
                 <div className="DivUpload">
-                    <label>Upload a CSV File for add Categorys to the list of Category.</label>
+                    <label style={{margin:"8px"}}>Upload a CSV File for add Categorys to the list of Category.</label>
                     <div className="SelectFile">
                         <label htmlFor="fileCate">
                             <div style={{marginRight:"5px", display:"inline-block", verticalAlign:"middle"}}>
