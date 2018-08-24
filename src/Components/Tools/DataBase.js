@@ -2,12 +2,12 @@ import firebase  from 'firebase/app';
 import 'firebase/database';
 
 const config = {
-    apiKey: "AIzaSyA0ZFxg9hneDtjyXIM8tSE6K0ZrCk1Jhn0",
-    authDomain: "crowd-coddingi4.firebaseapp.com",
-    databaseURL: "https://crowd-coddingi4.firebaseio.com",
-    projectId: "crowd-coddingi4",
-    storageBucket: "crowd-coddingi4.appspot.com",
-    messagingSenderId: "611683137044"
+    apiKey: "AIzaSyCpjc8diXs4dR-4SIT8pPrBJJA6pYtp8lQ",
+    authDomain: "crowd-codding-upload.firebaseapp.com",
+    databaseURL: "https://crowd-codding-upload.firebaseio.com",
+    projectId: "crowd-codding-upload",
+    storageBucket: "crowd-codding-upload.appspot.com",
+    messagingSenderId: "524418631335"
 };
 const app = firebase.initializeApp(config);
 const db = app.database()
@@ -15,9 +15,9 @@ const db = app.database()
 var refGeneralCategory = db.ref("CategoryAndPost/Category");
 var refGeneralPosts = db.ref("CategoryAndPost/Post");
 var refAllUsers = db.ref("Users");
-var refChatRoom = db.ref("ChatRoom")
+// var refChatRoom = db.ref("ChatRoom")
 
 //example user
 var dbUser = db
 
-export { refGeneralCategory, refGeneralPosts, refAllUsers, refChatRoom, dbUser}
+export { refGeneralCategory, refGeneralPosts, refAllUsers, dbUser}
