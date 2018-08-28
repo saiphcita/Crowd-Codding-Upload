@@ -4,6 +4,7 @@
     border: 1px solid greenyellow;
     margin: 10px 0 0 8px;
     width: 500px;
+    height: 90px;
     display: block;
 }
 
@@ -29,3 +30,34 @@
 	position: absolute;
 	z-index: -1;
 }
+
+.buttonsDiv{
+    background-color: white;
+    width: 350px;
+    height: 90px;
+    float: left;
+    margin: 10px 0 0 8px;
+}
+.errorCSV{
+    float: left;
+    background-color: #C80A32;
+    color: white;
+    width: 320px;
+    border-radius: 12px;
+    padding: 8px;
+}
+.uploadCSV button{
+    float: left;
+    background-color: #12C335;
+    width: 120px;
+    height: 50px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.uploadCSV button:hover{background-color: #11AF30;}
+.uploadCSV button:focus {outline: none;}
+.uploadCSV button:active{background-color: #D5DBDB;}

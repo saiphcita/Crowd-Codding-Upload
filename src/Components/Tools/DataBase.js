@@ -11,13 +11,12 @@ const config = {
 };
 const app = firebase.initializeApp(config);
 const db = app.database()
+//example user
+var dbUser = db
 
 var refGeneralCategory = db.ref("CategoryAndPost/Category");
 var refGeneralPosts = db.ref("CategoryAndPost/Post");
 var refAllUsers = db.ref("Users");
-// var refChatRoom = db.ref("ChatRoom")
 
-//example user
-var dbUser = db
 
 export { refGeneralCategory, refGeneralPosts, refAllUsers, dbUser}
