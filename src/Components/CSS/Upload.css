@@ -1,16 +1,19 @@
 .DivUpload{
     float: left;
+    width: 90%;
+    height: 16%;
+    max-height: 16%;
+}
+.DivSelectCSV{
+    float: left;
     text-align: left;
-    border: 1px solid greenyellow;
-    margin: 10px 0 0 8px;
-    width: 500px;
-    height: 90px;
+    border: 2px solid greenyellow;
+    margin: 0;
+    width: 45%;
+    height: 100%;
     display: block;
 }
-
-.SelectFile{
-    text-align: center;
-}
+.SelectFile{ text-align: center; }
 .SelectFile label {
     cursor: pointer;
     background-color: #D5DBDB;
@@ -18,9 +21,7 @@
     border-radius: 5px;
     width: 400px;
 }
-.SelectFile label:hover {
-    background-color: #BDC3C7;
-}
+.SelectFile label:hover { background-color: #BDC3C7; }
 
 .inputfile{
 	width: 0.1px;
@@ -30,34 +31,39 @@
 	position: absolute;
 	z-index: -1;
 }
-
 .buttonsDiv{
-    background-color: white;
-    width: 350px;
-    height: 90px;
+    display: table;
+    text-align: center;
+    width: 55%;
+    height: 100%;
     float: left;
-    margin: 10px 0 0 8px;
+    margin: 0;
 }
 .errorCSV{
-    float: left;
-    background-color: #C80A32;
-    color: white;
-    width: 320px;
-    border-radius: 12px;
-    padding: 8px;
-}
-.uploadCSV button{
-    float: left;
-    background-color: #12C335;
-    width: 120px;
-    height: 50px;
-    font-size: 1.4rem;
-    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+    color:  #C80A32;
+    font-size: 1.2rem;
+    font-weight: 520;
+    margin: 0;
     padding: 0;
-    border: 0;
-    border-radius: 12px;
+}
+.uploadCSV{
+    display: table-cell;
+    vertical-align: middle;
+}
+.uploadCSV button {
+    background-color: #F5A803; /* Green */
+    border: none;
+    color: white;
+    padding: 22px 60px;
+    margin: 0;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
     cursor: pointer;
 }
-.uploadCSV button:hover{background-color: #11AF30;}
-.uploadCSV button:focus {outline: none;}
-.uploadCSV button:active{background-color: #D5DBDB;}
+.uploadCSV button:hover {
+    background-color: white;
+    color: #F5A803;
+    border: 1px solid #F5A803;
+}

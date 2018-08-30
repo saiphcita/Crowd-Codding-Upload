@@ -50,6 +50,14 @@ class Upload extends Component {
                     };
                     lines.shift()
                     this.setState({newPostList: lines})
+                    //viendo cuantos existen
+                    var listNew = []
+                    for (let i = 0; i < lines.length; i++) {
+                        if(this.state.arrayPost.includes(lines[i])){
+                            listNew.push(lines[i])
+                        }
+                    }
+                    console.log("De los "+lines.length+" comentarios Nuevos, "+listNew.length+" ya existen." )
                 };
                 reader.readAsText(input.files[0]);  
             }else{
@@ -70,6 +78,8 @@ class Upload extends Component {
         }
         var newArrayPost = oldArrayPost.concat(listNew);
         refGeneralPosts.set(newArrayPost)
+        // var arrayPost0 = ["hola"]
+        // refGeneralPosts.set(arrayPost0)
     };
 
 
@@ -84,25 +94,27 @@ class Upload extends Component {
         errorCSV = <div className="errorCSV">The Type of File you Upload is not Correct.</div>
       }
 
-    return (
-            <div>
+    return (    
+            <div style={{height: "92%"}}>
                 <div className="DivUpload">
-                    <label style={{margin:"8px"}}>Upload a CSV File for view your new list of Post.</label>
-                    <div className="SelectFile">
-                        <label htmlFor="filePost">
-                            <div style={{marginRight:"5px", display:"inline-block", verticalAlign:"middle"}}>
-                                <Icon size={16} icon={plus}/>
-                            </div>
-                            <span>Select your file</span>
-                        </label>
-                        <input type="file"  name="filePost" id="filePost" className="inputfile" onChange={(event)=>this.convertFile(event)}/>
+                    <div className="DivSelectCSV">
+                        <label style={{margin:"8px"}}>Upload a CSV File for view your new list of Post.</label>
+                        <div className="SelectFile">
+                            <label htmlFor="filePost">
+                                <div style={{marginRight:"5px", display:"inline-block", verticalAlign:"middle"}}>
+                                    <Icon size={16} icon={plus}/>
+                                </div>
+                                <span>Select your file</span>
+                            </label>
+                            <input type="file"  name="filePost" id="filePost" className="inputfile" onChange={(event)=>this.convertFile(event)}/>
+                        </div>
+                    </div>
+                    <div className="buttonsDiv">
+                        {uploadCSV}
+                        {errorCSV}
                     </div>
                 </div>
-                <div className="buttonsDiv">
-                    {uploadCSV}
-                    {errorCSV}
-                </div>
-                {listPostDiv}
+                    {listPostDiv}
             </div>
     );
   }

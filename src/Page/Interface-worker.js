@@ -2,8 +2,6 @@ import React from 'react';
 import NavBar  from '../Components/NavBar.js'
 import AsideBar  from '../Components/AsideBar.js'
 import Upload  from '../Components/Upload.js'
-// import ChatBar  from '../Components/ChatBar.js'
-// import PostAndCategory  from '../Components/PostAndCategory.js'
 
 function  WorkerPage (props) {
   return (
@@ -11,8 +9,6 @@ function  WorkerPage (props) {
         <NavBar numberUser={props.user}/>
         <AsideBar/>
         <Upload/>
-        {/* <ChatBar numberUser={props.user}/> */}
-        {/* <PostAndCategory numberUser={props.user}/> */}
       </div>
   );
 }
