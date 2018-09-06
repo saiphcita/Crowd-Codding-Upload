@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../CSS/Upload.css';
 import Icon from 'react-icons-kit';
 import { plus } from 'react-icons-kit/fa/plus'
-import { refGeneralPosts } from './DataBase.js'
+import { refGeneralPosts, refReport } from './DataBase.js'
 import ListPost  from './ListPost.js'
 
 class Upload extends Component {
@@ -18,6 +18,10 @@ class Upload extends Component {
         refGeneralPosts.on("value", (snapshot) => {
             let arrayPost = snapshot.val();
             this.setState({arrayPost: arrayPost})
+        });
+        refReport.on("value", (snapshot) => {
+            let report = snapshot.val();
+            tconsole.log(report)
         });
     }
 

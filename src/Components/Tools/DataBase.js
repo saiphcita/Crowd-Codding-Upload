@@ -41,17 +41,19 @@ if(localStorage.getItem("acualInterface") === "1"){
     }
 }else{
     config = {
-        apiKey: "AIzaSyAYStRsZqUp9u5d6uJE2qXEa1A_0QsilWk",
-        authDomain: "crowd-codding.firebaseapp.com",
-        databaseURL: "https://crowd-codding.firebaseio.com",
-        projectId: "crowd-codding",
-        storageBucket: "crowd-codding.appspot.com",
-        messagingSenderId: "852929625643"
+        apiKey: "AIzaSyCpjc8diXs4dR-4SIT8pPrBJJA6pYtp8lQ",
+        authDomain: "crowd-codding-upload.firebaseapp.com",
+        databaseURL: "https://crowd-codding-upload.firebaseio.com",
+        projectId: "crowd-codding-upload",
+        storageBucket: "crowd-codding-upload.appspot.com",
+        messagingSenderId: "524418631335"
     }
 }
 
 const app = firebase.initializeApp(config);
 const db = app.database()
+
+
 //example user
 var dbUser = db
 
@@ -59,4 +61,7 @@ var refGeneralCategory = db.ref("CategoryAndPost/Category");
 var refGeneralPosts = db.ref("CategoryAndPost/Post");
 var refAllUsers = db.ref("Users");
 
-export { refGeneralCategory, refGeneralPosts, refAllUsers, dbUser}
+//report
+var refReport = db.ref("Report");
+
+export { refGeneralCategory, refGeneralPosts, refAllUsers, dbUser, refReport}
