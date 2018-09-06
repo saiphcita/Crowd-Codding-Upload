@@ -1,35 +1,38 @@
 import React, { Component } from 'react';
 import '../CSS/NavBar.css';
-import {refAllUsers} from './DataBase.js'
+import { Link } from 'react-router-dom';
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      workerName: ""
+      BossId: ""
     };
   }
 
   componentDidMount(){
-    refAllUsers.on("value", (snapshot) => {
-        let AllUsers = snapshot.val();
-        let listOfUsers = AllUsers.map(val => {return val.UserInfo.Username})
-        this.setState({workerName: listOfUsers[this.props.numberUser].charAt(0).toUpperCase() + listOfUsers[this.props.numberUser].slice(1)})
-    });
+    var bossId = localStorage.getItem("BossId")
+    this.setState({BossId: bossId.charAt(0).toUpperCase() +bossId.slice(1)})
   }
 
   logOut(){
-    localStorage.setItem("workerId", undefined);
-    localStorage.setItem("workerPassword", undefined)
+    localStorage.setItem("BossId", undefined);
+    localStorage.setItem("BossPassword", undefined)
+    localStorage.setItem("acualInterface", "0");
     window.location.reload();
-  }
+}
+
+  ChangeInt(){
+    localStorage.setItem("acualInterface", "0") ;
+}
 
   render(){
     return (
         <div className="NavStyle">
           <header style={{display:"table-cell", verticalAlign:"middle"}}>
-            <div className="divWorkerName">{this.state.workerName}</div>
-            <button onClick={this.logOut}>Log Out</button>  
+            <div className="divWorkerName">{this.state.BossId}</div>
+            <Link to="/"><button onClick={this.logOut}>Log Out</button></Link>
+            <Link to="/"><button onClick={this.ChangeInt}>Change Interface</button></Link>
           </header>
         </div>
     );

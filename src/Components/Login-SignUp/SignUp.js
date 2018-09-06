@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './SignUp.css';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
-import { refAllUsers } from '../Tools/DataBase.js'
+import { refBosses } from '../Tools/DataBase.js'
 
 class SignUp extends Component{
     constructor(props) {
@@ -25,33 +25,24 @@ class SignUp extends Component{
             this.setState({replyErr: "You must fill all the fields*"})
         }else{
             if(this.state.listUsers.includes(this.state.user.toLowerCase())){
-                this.setState({replyErr: "This Worker ID already exists*"})
+                this.setState({replyErr: "This Boss ID already exists*"})
             }else{
                 if(this.state.password !== this.state.confirmPassword){
                     this.setState({replyErr: "Your password doesn't match*"})
                 }else{
                     var usuarios = this.state.allUsers
                     var NewUser = {
-                          "PostAndCategory": {
-                            "Category": [],
-                            "Post": []
-                          },
-                          "UserInfo": {
-                            "Password": this.state.password,
-                            "Username": this.state.user.toLowerCase()
-                        },
-                        "UserState": "working"
-                      };
-                      NewUser.PostAndCategory.Category = this.props.categorys
-                      NewUser.PostAndCategory.Post = this.props.posts
-                      usuarios.push(NewUser)
-                      this.setState({allUsers: usuarios})
-                      this.setState({listUsers: this.state.allUsers.map(val => {return val.UserInfo.Username})})
-                      //save the new user
-                      refAllUsers.set(this.state.allUsers)
-                      this.setState({workerId: this.state.user})
-                      this.setState({workerPassword: this.state.password});
-                      window.location.reload();
+                        "BossId": this.state.user.toLowerCase(),
+                        "Password": this.state.password
+                    }
+                    usuarios.push(NewUser)
+                    this.setState({allUsers: usuarios})
+                    this.setState({listUsers: this.state.allUsers.map(val => {return val.BossId})})
+                    //save the new user
+                    refBosses.set(this.state.allUsers)
+                    this.setState({BossId: this.state.user})
+                    this.setState({BossPassword: this.state.password});
+                    window.location.reload();
                 }
             }
         }
@@ -61,12 +52,12 @@ class SignUp extends Component{
         this.setState({ user: e.target.value.toLowerCase()});
         if(e.target.value.length !== 0){
             if(this.state.listUsers.includes(e.target.value.toLowerCase())){
-                this.setState({replyErr: "This Worker ID already exists*"})
+                this.setState({replyErr: "This Boss ID already exists*"})
             }else{
-                this.setState({replyErr: <div style={{color: "green"}}>Your Worker ID is correct.</div>})
+                this.setState({replyErr: <div style={{color: "green"}}>Your Boss ID is correct.</div>})
             }
         }else{
-            this.setState({replyErr: "Write your new Worker ID"})
+            this.setState({replyErr: "Write your new Boss ID"})
         }
       };
 
@@ -86,8 +77,8 @@ class SignUp extends Component{
     };
 
     componentWillUpdate(nextProps, nextState){
-        localStorage.setItem("workerId", nextState.workerId);
-        localStorage.setItem("workerPassword", nextState.workerPassword)
+        localStorage.setItem("BossId", nextState.BossId);
+        localStorage.setItem("BossPassword", nextState.BossPassword)
     }
 
     render(){
@@ -99,7 +90,7 @@ class SignUp extends Component{
             if(!this.state.listUsers.includes(workerId)){
                 if(passwordId.length !== 0 || confirmPasswordId.length !== 0){
                     if (confirmPasswordId === passwordId){
-                        divStatus = <div className="replyErr"><div style={{color: "green"}}>Your Worker Id and your Password are correct</div></div>
+                        divStatus = <div className="replyErr"><div style={{color: "green"}}>Your Boss Id and your Password are correct</div></div>
                     }
                 }
             }
@@ -109,13 +100,13 @@ class SignUp extends Component{
             <div className="DivSignup">
                 <Form >
                     <FormGroup>
-                        <Label for="exampleUser">New Worker ID</Label>
+                        <Label for="exampleUser">New Boss ID</Label>
                         <Input
                         onChange={this.handleChangeUser} 
-                        type="Worker ID" 
-                        name="Worker ID" 
+                        type="Boss ID" 
+                        name="Boss ID" 
                         id="newUser" 
-                        placeholder="Write your Worker ID"
+                        placeholder="Write your Boss ID"
                         />
                     </FormGroup>
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './CSS/Start-interface.css';
-import { refAllUsers, refGeneralPosts, refGeneralCategory } from './Tools/DataBase.js'
-import { Link } from 'react-router-dom';
+import { refBosses } from './Tools/DataBase.js'
 import LogIn  from './Login-SignUp/Login.js'
 import SignUp  from './Login-SignUp/SignUp.js'
 
@@ -12,30 +11,18 @@ class StartInterface  extends Component {
         this.state = {
             color1: "#3C3B47",
             color2: "#3C3B47",
-            StatePage: <div className="divStatePage"><h2>Create a Worker ID to enter the work page and if you already have it, you can login.</h2></div>,
-            listUsers: [],
+            StatePage: <div className="divStatePage"><h2>Create a Boss ID to enter the Boss page and if you already have it, you can login.</h2></div>,
+            listOfBosses: [],
             pageTimeLoad: false,
         };
       }
 
     componentDidMount(){
-        this.setState({acualInterface: localStorage.getItem("acualInterface")})
-        refAllUsers.on("value", (snapshot) => {
-            let AllUsers = snapshot.val();
-            let listOfUsers = AllUsers.map(val => {return val.UserInfo.Username})
-            this.setState({allUsers : AllUsers})
-            this.setState({listUsers: listOfUsers})
-        });
-        refGeneralPosts.on("value", (snapshot) => {
-            let posts = snapshot.val();
-            posts = posts.map(i => { return {"category": 0, "post": i }})
-            this.setState({posts : posts})
-        });
-        refGeneralCategory.on("value", (snapshot) => {
-            let categorys = snapshot.val();
-            categorys = categorys.map(i => i.categoryName)
-            categorys.unshift("Select Category")
-            this.setState({categorys : categorys})
+        refBosses.on("value", (snapshot) => {
+            let Bosses = snapshot.val();
+            let listOfBosses = Bosses.map(val => {return val.BossId})
+            this.setState({Bosses : Bosses})
+            this.setState({listOfBosses: listOfBosses})
         });
         setTimeout(()=> {
             this.setState({pageTimeLoad: true})
@@ -47,7 +34,7 @@ class StartInterface  extends Component {
         setTimeout(()=> {
             this.setState({color1: "#3BC079"});
             this.setState({color2: "#3C3B47"});
-            this.setState({StatePage: <LogIn allUsers={this.state.allUsers} listUsers={this.state.listUsers}/>});
+            this.setState({StatePage: <LogIn allUsers={this.state.Bosses} listUsers={this.state.listOfBosses}/>});
         }, 700)
     }
 
@@ -55,19 +42,8 @@ class StartInterface  extends Component {
         setTimeout(()=> {
             this.setState({color2: "#3BC079"});
             this.setState({color1: "#3C3B47"});
-            this.setState({StatePage:<SignUp 
-                                        allUsers={this.state.allUsers} 
-                                        listUsers={this.state.listUsers} 
-                                        posts={this.state.posts}
-                                        categorys ={this.state.categorys}
-                                        />});
+            this.setState({StatePage:<SignUp allUsers={this.state.Bosses} listUsers={this.state.listOfBosses}/>});
         }, 700)
-    }
-
-    ChangeInt(){
-        localStorage.setItem("acualInterface", "0")
-        localStorage.setItem("workerId", undefined);
-        localStorage.setItem("workerPassword", undefined)
     }
 
     render(){
@@ -94,8 +70,7 @@ class StartInterface  extends Component {
 
         return (
             <div className="DivBase ">
-                 <Link to="/"><button onClick={this.ChangeInt} className="buttonInt">Change Interface</button></Link>
-                <h3>Welcome to WokerPage, Interface: {this.state.acualInterface}</h3>
+                <h3>Welcome to BossPage</h3>
                 <div className="DivForm">
                     {pageLoad}
                     {this.state.StatePage}

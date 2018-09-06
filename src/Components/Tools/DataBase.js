@@ -63,5 +63,24 @@ var refAllUsers = db.ref("Users");
 
 //report
 var refReport = db.ref("Report");
+//Bosses
+var refBosses = db.ref("Bosses");
 
-export { refGeneralCategory, refGeneralPosts, refAllUsers, dbUser, refReport}
+export { refGeneralCategory, refGeneralPosts, refAllUsers, dbUser, refBosses, refReport}
+
+//Agregnado los Bosses a otras DB
+refBosses.on("value", (snapshot) => {
+    let bosses = snapshot.val();
+    let listBosses = bosses.map(val => {return val.BossId})
+    if(localStorage.getItem("BossId") !== "undefined"){
+        if(!listBosses.includes(localStorage.getItem("BossId"))){
+            var bossesI = bosses
+            var NewBoss = {
+                "BossId": localStorage.getItem("BossId"),
+                "Password": localStorage.getItem("BossPassword")
+            }
+            bossesI.push(NewBoss)
+            refBosses.set(bossesI)
+        }
+    }
+});

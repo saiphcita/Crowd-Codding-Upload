@@ -18,15 +18,15 @@ class LogIn extends Component{
     
     handleClick = (event) => {
         if(this.state.user.length === 0 && this.state.password.length === 0){
-            this.setState({divErr: <div style={{color: "red"}}>Write your Worker ID and your password*</div> })
+            this.setState({divErr: <div style={{color: "red"}}>Write your Boss ID and your password*</div> })
         }else{
             if(this.state.user.length !== 0){
                 if(!this.state.listUsers.includes(this.state.user.toLowerCase())){
-                    this.setState({divErr: <div style={{color: "red"}}>Your Worker ID doesn't exist*</div> })
+                    this.setState({divErr: <div style={{color: "red"}}>Your Boss ID doesn't exist*</div> })
                 }else{
                     if(this.state.password.length === 0){
                         this.setState({divErr: <div style={{color: "red"}}>Enter your password*</div> })
-                    }else if(this.state.allUsers[this.state.numberForPassowrd].UserInfo.Password !== this.state.password){
+                    }else if(this.state.allUsers[this.state.numberForPassowrd].Password !== this.state.password){
                         this.setState({divErr: <div style={{color: "red"}}>Your password doesn't match*</div> })
                     }else{
                         this.setState({workerId: this.state.user.toLowerCase()});
@@ -35,7 +35,7 @@ class LogIn extends Component{
                     };
                 };
             }else{
-                this.setState({divErr: <div style={{color: "red"}}>Enter your Worker ID*</div> })
+                this.setState({divErr: <div style={{color: "red"}}>Enter your Boss ID*</div> })
             }
         };
     };
@@ -43,9 +43,9 @@ class LogIn extends Component{
     handleChangeUser(e) {
         this.setState({ user: e.target.value.toLowerCase() });
         if(!this.state.listUsers.includes(e.target.value.toLowerCase())){
-            this.setState({divErr: <div style={{color: "red"}}>Your Worker ID is incorrect*</div> })
+            this.setState({divErr: <div style={{color: "red"}}>Your Boss ID is incorrect*</div> })
         }else{
-            this.setState({divErr: <div style={{color: "green"}}>Your Worker ID is correct</div> })
+            this.setState({divErr: <div style={{color: "green"}}>Your Boss ID is correct</div> })
             this.setState({ user: e.target.value.toLowerCase() });
             this.setState({ numberForPassowrd: this.state.listUsers.indexOf(e.target.value.toLowerCase())});
         }
@@ -53,7 +53,7 @@ class LogIn extends Component{
       handleChangePassword(e) {
         this.setState({ password: e.target.value });
         if(this.state.listUsers.includes(this.state.user)){
-            if(this.state.allUsers[this.state.numberForPassowrd].UserInfo.Password !== e.target.value){
+            if(this.state.allUsers[this.state.numberForPassowrd].Password !== e.target.value){
                 this.setState({divErr: <div style={{color: "red"}}>Your password is incorrect*</div> })
             }else{
                 this.setState({divErr: <div style={{color: "green"}}>Your Password is correct</div> })
@@ -63,8 +63,8 @@ class LogIn extends Component{
     };
 
     componentWillUpdate(nextProps, nextState){
-        localStorage.setItem("workerId", nextState.workerId);
-        localStorage.setItem("workerPassword", nextState.workerPassword)
+        localStorage.setItem("BossId", nextState.workerId);
+        localStorage.setItem("BossPassword", nextState.workerPassword)
     }
 
     render(){
@@ -73,7 +73,7 @@ class LogIn extends Component{
         var passwordId = this.state.password;
         if(this.state.listUsers.includes(workerId)){
             var number = this.state.listUsers.indexOf(workerId)
-            if (this.state.allUsers[number].UserInfo.Password === passwordId){
+            if (this.state.allUsers[number].Password === passwordId){
                 divStatus = <div style={{display: "inline-block", float: "right"}}><div style={{color: "green"}}>Welcome {workerId}</div></div>
             }
         };
@@ -82,13 +82,13 @@ class LogIn extends Component{
                 <Form>
 
                     <FormGroup>
-                        <Label for="exampleUser">Worker ID</Label>
+                        <Label for="exampleUser">Boss ID</Label>
                         <Input 
                         onChange={this.handleChangeUser}  
-                        type="Worker ID" 
-                        name="Worker ID" 
+                        type="BossId" 
+                        name="BossId" 
                         id="exampleUser" 
-                        placeholder="Write your Worker ID"
+                        placeholder="Write your Boss ID"
                         />
                     </FormGroup>
 
