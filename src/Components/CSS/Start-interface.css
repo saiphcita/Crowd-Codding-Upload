@@ -25,6 +25,21 @@
     height: 100%;
     background-color: #F2F4F4;
 }
+.buttonInt {
+    position: absolute;
+    right: 4%;
+    background-color: #797D7F;
+    border: 1px solid #797D7F;
+    color: white;
+    padding: 12px 28px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.buttonInt:hover {
+    background-color: white;
+    color: #797D7F;
+}
 .DivForm{
     display: inline-block;
     background-color: #211D4E;

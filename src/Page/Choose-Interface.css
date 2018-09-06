@@ -1,0 +1,38 @@
+.DivAllButtons{
+    padding: 12px 0
+}
+.DivAllButtons button {
+    background-color: #F5A803;
+    border: 1px solid #F5A803;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 8px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.DivAllButtons button:hover {
+    background-color: white;
+    color: #F5A803;
+}
+
+.Gobutton {
+    background-color: #5CD586;
+    border: 1px solid #5CD586;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 8px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.Gobutton:hover {
+    background-color: white;
+    color: #5CD586;
+}

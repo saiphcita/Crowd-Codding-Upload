@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './SignUp.css';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
-import { Link } from 'react-router-dom';
 import { refAllUsers } from '../Tools/DataBase.js'
 
 class SignUp extends Component{
@@ -33,7 +32,6 @@ class SignUp extends Component{
                 }else{
                     var usuarios = this.state.allUsers
                     var NewUser = {
-                        "User": {
                           "PostAndCategory": {
                             "Category": [],
                             "Post": []
@@ -41,16 +39,19 @@ class SignUp extends Component{
                           "UserInfo": {
                             "Password": this.state.password,
                             "Username": this.state.user.toLowerCase()
-                          }
-                        }
+                        },
+                        "UserState": "working"
                       };
-                      NewUser.User.PostAndCategory.Category = this.props.categorys
-                      NewUser.User.PostAndCategory.Post = this.props.posts
+                      NewUser.PostAndCategory.Category = this.props.categorys
+                      NewUser.PostAndCategory.Post = this.props.posts
                       usuarios.push(NewUser)
                       this.setState({allUsers: usuarios})
-                      this.setState({listUsers: this.state.allUsers.map(val => {return val.User.UserInfo.Username})})
+                      this.setState({listUsers: this.state.allUsers.map(val => {return val.UserInfo.Username})})
                       //save the new user
                       refAllUsers.set(this.state.allUsers)
+                      this.setState({workerId: this.state.user})
+                      this.setState({workerPassword: this.state.password});
+                      window.location.reload();
                 }
             }
         }
@@ -84,10 +85,13 @@ class SignUp extends Component{
         }
     };
 
-    render(){
+    componentWillUpdate(nextProps, nextState){
+        localStorage.setItem("workerId", nextState.workerId);
+        localStorage.setItem("workerPassword", nextState.workerPassword)
+    }
 
+    render(){
         var divStatus = <div className="replyErr">{this.state.replyErr}</div>;
-        var url = "";
         var workerId = this.state.user;
         var passwordId = this.state.password;
         var confirmPasswordId = this.state.confirmPassword;
@@ -95,15 +99,10 @@ class SignUp extends Component{
             if(!this.state.listUsers.includes(workerId)){
                 if(passwordId.length !== 0 || confirmPasswordId.length !== 0){
                     if (confirmPasswordId === passwordId){
-                        url = "/postAndcategory/"+workerId;
                         divStatus = <div className="replyErr"><div style={{color: "green"}}>Your Worker Id and your Password are correct</div></div>
-                    }else{
-                        url = "";
                     }
                 }
-            }else{
-                url = "";
-            };
+            }
         };
 
         return (
@@ -143,9 +142,7 @@ class SignUp extends Component{
                     </FormGroup> 
 
                 </Form>
-                <Link to={url}>
                 <Button style={{float: "right"}} color="success" onClick={this.handleClick}>Submit</Button>
-                </Link>
                 {divStatus}
             </div> 
         );

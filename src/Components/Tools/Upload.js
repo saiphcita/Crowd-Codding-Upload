@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './CSS/Upload.css';
+import '../CSS/Upload.css';
 import Icon from 'react-icons-kit';
-import {plus} from 'react-icons-kit/fa/plus'
-import { refGeneralPosts } from './Tools/DataBase.js'
-import ListPost  from './Tools/ListPost.js'
+import { plus } from 'react-icons-kit/fa/plus'
+import { refGeneralPosts } from './DataBase.js'
+import ListPost  from './ListPost.js'
 
 class Upload extends Component {
     constructor(props) {
@@ -121,16 +121,3 @@ class Upload extends Component {
 }
 
 export default Upload;
-
-/*<div className="DivUpload">
-    <label style={{margin:"8px"}}>Upload a CSV File for add Categorys to the list of Category.</label>
-    <div className="SelectFile">
-        <label htmlFor="fileCate">
-            <div style={{marginRight:"5px", display:"inline-block", verticalAlign:"middle"}}>
-                <Icon size={16} icon={plus}/>
-            </div>
-            <span>Select your file</span>
-        </label>
-        <input type="file" name="fileCate" id="fileCate" className="inputfile" onChange={(e)=>convertFile(e)}/>
-    </div>
-</div> */

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import './Start-interface.css';
-import { refAllUsers, refGeneralPosts, refGeneralCategory } from '../Components/Tools/DataBase.js'
-import LogIn  from '../Components/Login-SignUp/Login.js'
-import SignUp  from '../Components/Login-SignUp/SignUp.js'
+import './CSS/Start-interface.css';
+import { refAllUsers, refGeneralPosts, refGeneralCategory } from './Tools/DataBase.js'
+import { Link } from 'react-router-dom';
+import LogIn  from './Login-SignUp/Login.js'
+import SignUp  from './Login-SignUp/SignUp.js'
 
 
 class StartInterface  extends Component {
@@ -13,14 +14,15 @@ class StartInterface  extends Component {
             color2: "#3C3B47",
             StatePage: <div className="divStatePage"><h2>Create a Worker ID to enter the work page and if you already have it, you can login.</h2></div>,
             listUsers: [],
-            pageTimeLoad: false
+            pageTimeLoad: false,
         };
       }
 
     componentDidMount(){
+        this.setState({acualInterface: localStorage.getItem("acualInterface")})
         refAllUsers.on("value", (snapshot) => {
             let AllUsers = snapshot.val();
-            let listOfUsers = AllUsers.map(val => {return val.User.UserInfo.Username})
+            let listOfUsers = AllUsers.map(val => {return val.UserInfo.Username})
             this.setState({allUsers : AllUsers})
             this.setState({listUsers: listOfUsers})
         });
@@ -62,6 +64,12 @@ class StartInterface  extends Component {
         }, 700)
     }
 
+    ChangeInt(){
+        localStorage.setItem("acualInterface", "0")
+        localStorage.setItem("workerId", undefined);
+        localStorage.setItem("workerPassword", undefined)
+    }
+
     render(){
         var pageLoad = <div style={{color: "white"}}>loading...</div>
 
@@ -86,7 +94,8 @@ class StartInterface  extends Component {
 
         return (
             <div className="DivBase ">
-                <h3>Welcome to WokerPage</h3>
+                 <Link to="/"><button onClick={this.ChangeInt} className="buttonInt">Change Interface</button></Link>
+                <h3>Welcome to WokerPage, Interface: {this.state.acualInterface}</h3>
                 <div className="DivForm">
                     {pageLoad}
                     {this.state.StatePage}

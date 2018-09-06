@@ -1,7 +1,7 @@
 import React from 'react';
-import NavBar  from '../Components/NavBar.js'
-import AsideBar  from '../Components/AsideBar.js'
-import Upload  from '../Components/Upload.js'
+import NavBar  from './Tools/NavBar.js'
+import AsideBar  from './Tools/AsideBar.js'
+import Upload  from './Tools/Upload.js'
 
 function  WorkerPage (props) {
   return (
