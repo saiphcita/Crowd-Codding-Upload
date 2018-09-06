@@ -21,7 +21,7 @@ class Upload extends Component {
         });
         refReport.on("value", (snapshot) => {
             let report = snapshot.val();
-            tconsole.log(report)
+            console.log(report)
         });
     }
 
