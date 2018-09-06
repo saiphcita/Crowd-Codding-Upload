@@ -7,7 +7,7 @@ class MainInterface extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          pageWorker: false,
+
       };
     }
 
@@ -17,6 +17,7 @@ class MainInterface extends Component {
     };
 
     componentDidMount(){
+        localStorage.getItem("workerId") && this.setState({pageWorker:null});
         refAllUsers.on("value", (snapshot) => {
             let AllUsers = snapshot.val();
             let listOfUsers = AllUsers.map(val => {return val.UserInfo.Username})
@@ -36,6 +37,8 @@ class MainInterface extends Component {
         var page = <div/>
         if(this.state.pageWorker){
             page = <WorkerPage user={this.state.numberOfUser}/>
+        }else if (this.state.pageWorker === null){
+            page = <div/>
         }else{
             page = <StartInterface />
         }

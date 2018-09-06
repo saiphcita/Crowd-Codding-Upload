@@ -11,6 +11,8 @@ class Upload extends Component {
         this.state = {
             newPostList:[],
             noCSV: false,
+            report: [],
+            viewReport: false
         };
     }
 
@@ -21,7 +23,7 @@ class Upload extends Component {
         });
         refReport.on("value", (snapshot) => {
             let report = snapshot.val();
-            console.log(report)
+            this.setState({report: report})
         });
     }
 
@@ -97,6 +99,30 @@ class Upload extends Component {
       if(this.state.noCSV){
         errorCSV = <div className="errorCSV">The Type of File you Upload is not Correct.</div>
       }
+      var viewButton = "See the current work of the Workers"
+      if(this.state.viewReport){
+        viewButton = "Hide the Report"
+        listPostDiv = <div className="DivReport">
+                        <div className="tittleReport">
+                            <li style={{width:"20%", maxWidth:"20%"}}>Workers</li>
+                            <li style={{width:"20%", maxWidth:"20%"}}>Selected</li>
+                            <li style={{width:"20%", maxWidth:"20%"}}>State</li>
+                            <li style={{width:"40%", maxWidth:"40%"}}>See Work</li>
+                        </div>
+                        {this.state.report.map((val, ind) =>{
+                        return (
+                            <div key={ind} className="listReport">
+                                <li style={{width:"20%", maxWidth:"20%", textAlign:"left"}}>{val["1-Worker"]}</li>
+                                <li style={{width:"20%", maxWidth:"20%"}}>{val["3-Selected"]}</li>
+                                <li style={{width:"20%", maxWidth:"20%"}}>{val["4-State"]}</li>
+                                <li style={{width:"40%", maxWidth:"40%", textAlign:"left"}}>see Posts of {val["1-Worker"]}</li>
+                            </div>
+                        )
+                        })}
+                    </div>
+      }else{
+        viewButton = "See the current work of the Workers"
+      }
 
     return (    
             <div style={{height: "92%"}}>
@@ -116,6 +142,9 @@ class Upload extends Component {
                     <div className="buttonsDiv">
                         {uploadCSV}
                         {errorCSV}
+                    </div>
+                    <div className="divSeeReport">
+                    <button onClick={()=> this.setState({viewReport: !this.state.viewReport})}>{viewButton}</button>
                     </div>
                 </div>
                     {listPostDiv}

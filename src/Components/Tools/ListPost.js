@@ -12,7 +12,7 @@ class ListPost extends Component {
         <div className="DivPostCategory">
           <div className="titleList">
             <li style={{width:"4%", maxWidth:"4%"}}>No.</li>
-            <li style={{width:"96%", maxWidth:"96%"}}>Comentario</li>
+            <li style={{width:"96%", maxWidth:"96%"}}>Post</li>
           </div>
           {this.props.arrayP.map((val, ind) =>{
             return (
