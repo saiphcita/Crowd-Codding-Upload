@@ -1,15 +1,20 @@
+.UploadStyle{
+    height: 100%;
+    width: 100%;
+}
+
 .DivUpload{
     float: left;
-    width: 90%;
+    width: 100%;
     height: 16%;
     max-height: 16%;
 }
 .DivSelectCSV{
     float: left;
-    text-align: center;
+    text-align: left;
     border: 2px solid greenyellow;
     margin: 0;
-    width: 35%;
+    width: 45%;
     height: 100%;
     display: block;
 }
@@ -19,7 +24,7 @@
     background-color: #D5DBDB;
     padding: 6px;
     border-radius: 5px;
-    width: 80%;
+    width: 400px;
 }
 .SelectFile label:hover { background-color: #BDC3C7; }
 
@@ -34,7 +39,7 @@
 .buttonsDiv{
     display: table;
     text-align: center;
-    width: 35%;
+    width: 55%;
     height: 100%;
     float: left;
     margin: 0;
@@ -66,69 +71,4 @@
     background-color: white;
     color: #F5A803;
     border: 1px solid #F5A803;
-}
-.divSeeReport{
-    display: table;
-    text-align: center;
-    width: 30%;
-    height: 100%;
-    float: left;
-    margin: 0;
-}
-.divSeeReport button {
-    background-color: #1A61E6;
-    border: 1px solid #1A61E6;
-    color: white;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-.divSeeReport button:hover {
-    background-color: white;
-    color: #1A61E6;
-}
-/* Report */
-.DivReport {
-    float: left;
-    margin: 0; 
-    width: 90%;
-    height: 84%;
-    overflow: auto;
-    border: 1px solid rgba(0,0,0,.225);
-}
-.tittleReport{
-    display: table;
-    width: 100%;
-    max-width: 100%;
-    height: 7.8%;
-    max-height: 7.8%;;
-}
-.tittleReport li{
-    text-align: left;
-    display: table-cell;
-    vertical-align: middle;
-    border: 1px solid rgba(0,0,0,.225);
-    height: 100%;
-    padding-left: 12px;
-    font-size: 1.1rem;
-    font-weight: bolder;
-}
-.listReport{
-    display: table;
-    width: 100%;
-    max-width: 100%;
-    height: 5.2%;
-    max-height: 5.2%;;
-}
-.listReport li{
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
-    border: 1px solid rgba(0,0,0,.225);
-    padding-left: 12px;
-    font-size: 0.8rem;
 }

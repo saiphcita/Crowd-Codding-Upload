@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../CSS/Upload.css';
 import Icon from 'react-icons-kit';
 import { plus } from 'react-icons-kit/fa/plus'
-import { refGeneralPosts, refReport } from './DataBase.js'
+import { refGeneralPosts } from './DataBase.js'
 import ListPost  from './ListPost.js'
 
 class Upload extends Component {
@@ -11,8 +11,6 @@ class Upload extends Component {
         this.state = {
             newPostList:[],
             noCSV: false,
-            report: [],
-            viewReport: false
         };
     }
 
@@ -20,10 +18,6 @@ class Upload extends Component {
         refGeneralPosts.on("value", (snapshot) => {
             let arrayPost = snapshot.val();
             this.setState({arrayPost: arrayPost})
-        });
-        refReport.on("value", (snapshot) => {
-            let report = snapshot.val();
-            this.setState({report: report})
         });
     }
 
@@ -94,38 +88,14 @@ class Upload extends Component {
       var errorCSV = <div/>
       if(this.state.newPostList.length !== 0){
         var uploadCSV = <div className="uploadCSV"><button onClick={this.UploadPosts.bind(this)}>Upload</button></div>
-        listPostDiv = <ListPost arrayP={this.state.newPostList}/>
+        listPostDiv = <div style={{height:"84%"}}><ListPost arrayP={this.state.newPostList}/></div>
       }
       if(this.state.noCSV){
         errorCSV = <div className="errorCSV">The Type of File you Upload is not Correct.</div>
       }
-      var viewButton = "See the current work of the Workers"
-      if(this.state.viewReport){
-        viewButton = "Hide the Report"
-        listPostDiv = <div className="DivReport">
-                        <div className="tittleReport">
-                            <li style={{width:"20%", maxWidth:"20%"}}>Workers</li>
-                            <li style={{width:"20%", maxWidth:"20%"}}>Selected</li>
-                            <li style={{width:"20%", maxWidth:"20%"}}>State</li>
-                            <li style={{width:"40%", maxWidth:"40%"}}>See Work</li>
-                        </div>
-                        {this.state.report.map((val, ind) =>{
-                        return (
-                            <div key={ind} className="listReport">
-                                <li style={{width:"20%", maxWidth:"20%", textAlign:"left"}}>{val["1-Worker"]}</li>
-                                <li style={{width:"20%", maxWidth:"20%"}}>{val["3-Selected"]}</li>
-                                <li style={{width:"20%", maxWidth:"20%"}}>{val["4-State"]}</li>
-                                <li style={{width:"40%", maxWidth:"40%", textAlign:"left"}}>see Posts of {val["1-Worker"]}</li>
-                            </div>
-                        )
-                        })}
-                    </div>
-      }else{
-        viewButton = "See the current work of the Workers"
-      }
 
     return (    
-            <div style={{height: "92%"}}>
+            <div className="UploadStyle">
                 <div className="DivUpload">
                     <div className="DivSelectCSV">
                         <label style={{margin:"8px"}}>Upload a CSV File for view your new list of Post.</label>
@@ -142,9 +112,6 @@ class Upload extends Component {
                     <div className="buttonsDiv">
                         {uploadCSV}
                         {errorCSV}
-                    </div>
-                    <div className="divSeeReport">
-                    <button onClick={()=> this.setState({viewReport: !this.state.viewReport})}>{viewButton}</button>
                     </div>
                 </div>
                     {listPostDiv}
