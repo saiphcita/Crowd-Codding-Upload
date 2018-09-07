@@ -10,21 +10,20 @@ class NavBar extends Component {
     };
   }
 
-  componentDidMount(){
-    var bossId = localStorage.getItem("BossId")
-    this.setState({BossId: bossId.charAt(0).toUpperCase() +bossId.slice(1)})
-  }
+  componentWillMount(){
+    localStorage.getItem("BossId") && this.setState({BossId: localStorage.getItem("BossId").charAt(0).toUpperCase() + localStorage.getItem("BossId").slice(1)});
+  };
 
   logOut(){
     localStorage.setItem("BossId", undefined);
     localStorage.setItem("BossPassword", undefined)
     localStorage.setItem("acualInterface", "0");
     window.location.reload();
-}
+  };
 
   ChangeInt(){
     localStorage.setItem("acualInterface", "0") ;
-}
+  };
 
   render(){
     return (

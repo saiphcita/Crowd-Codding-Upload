@@ -29,8 +29,8 @@ class LogIn extends Component{
                     }else if(this.state.allUsers[this.state.numberForPassowrd].Password !== this.state.password){
                         this.setState({divErr: <div style={{color: "red"}}>Your password doesn't match*</div> })
                     }else{
-                        this.setState({workerId: this.state.user.toLowerCase()});
-                        this.setState({workerPassword: this.state.password.toLowerCase()});
+                        this.setState({BossId: this.state.user.toLowerCase()});
+                        this.setState({BossPassword: this.state.password});
                         window.location.reload();
                     };
                 };
@@ -63,8 +63,8 @@ class LogIn extends Component{
     };
 
     componentWillUpdate(nextProps, nextState){
-        localStorage.setItem("BossId", nextState.workerId);
-        localStorage.setItem("BossPassword", nextState.workerPassword)
+        localStorage.setItem("BossId", nextState.BossId);
+        localStorage.setItem("BossPassword", nextState.BossPassword)
     }
 
     render(){

@@ -12,8 +12,8 @@ class MainInterface extends Component {
     }
 
     componentWillMount(){
-        localStorage.getItem("BossId") && this.setState({workerId: localStorage.getItem("BossId")});
-        localStorage.getItem("BossPassword") && this.setState({workerPassword: localStorage.getItem("BossPassword")});
+        localStorage.getItem("BossId") && this.setState({BossId: localStorage.getItem("BossId")});
+        localStorage.getItem("BossPassword") && this.setState({BossPassword: localStorage.getItem("BossPassword")});
     };
 
     componentDidMount(){
@@ -21,9 +21,9 @@ class MainInterface extends Component {
         refBosses.on("value", (snapshot) => {
             let Bosses = snapshot.val();
             let listOfBosses = Bosses.map(val => {return val.BossId})
-            if(listOfBosses.includes(this.state.workerId)){
-                var numerOfUser = listOfBosses.indexOf(this.state.workerId)
-                if(Bosses[numerOfUser].Password === this.state.workerPassword){
+            if(listOfBosses.includes(this.state.BossId)){
+                var numerOfUser = listOfBosses.indexOf(this.state.BossId)
+                if(Bosses[numerOfUser].Password === this.state.BossPassword){
                     this.setState({numberOfUser: numerOfUser})
                     this.setState({pageWorker: true})
                 }else{this.setState({pageWorker: false})}

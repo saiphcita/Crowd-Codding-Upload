@@ -40,9 +40,9 @@ class SignUp extends Component{
                     this.setState({listUsers: this.state.allUsers.map(val => {return val.BossId})})
                     //save the new user
                     refBosses.set(this.state.allUsers)
-                    this.setState({BossId: this.state.user})
+                    this.setState({BossId: this.state.user.toLowerCase()})
                     this.setState({BossPassword: this.state.password});
-                    window.location.reload();
+                    setTimeout(()=> { window.location.reload(); }, 1500);
                 }
             }
         }
