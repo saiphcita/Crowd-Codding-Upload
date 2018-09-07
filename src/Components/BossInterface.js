@@ -17,11 +17,11 @@ class BossInterface extends Component {
         var buttons = 
             <div className="buttonsDivBoss">
                 <div>
-                    <button onClick={()=> this.setState({statePage: 1})} className="divSeeReport">See the Users' Work Report</button>
+                    <button onClick={()=> this.setState({statePage: 1})} className="divSeeReport">See the Workers' Report</button>
                 </div>
                 <div>
                     <button onClick={()=> this.setState({statePage: 2})} className="divAdmin" style={{marginRight:"1%"}}>Manage the POSTS of the Interface {localStorage.getItem("acualInterface")}</button>
-                    <button onClick={()=> this.setState({statePage: 2})} className="divAdmin" style={{marginLeft:"1%"}}>Manage the CATEGORIES of the Interface {localStorage.getItem("acualInterface")}</button>
+                    <button onClick={()=> this.setState({statePage: 0})} className="divAdmin" style={{marginLeft:"1%"}}>Manage the CATEGORIES of the Interface {localStorage.getItem("acualInterface")}</button>
                 </div>
             </div>;
 

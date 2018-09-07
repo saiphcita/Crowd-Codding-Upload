@@ -3,8 +3,36 @@ import '../CSS/Upload.css';
 import Icon from 'react-icons-kit';
 import { plus } from 'react-icons-kit/fa/plus'
 import { refGeneralPosts } from './DataBase.js'
-import ListPost  from './ListPost.js'
 
+
+//Listando los posts
+class ListPost extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {}
+    };
+  
+    render() {
+      return (
+          <div className="DivPost">
+            <div className="titlePost">
+              <li style={{width:"4%", maxWidth:"4%"}}>No.</li>
+              <li style={{width:"96%", maxWidth:"96%"}}>Post</li>
+            </div>
+            {this.props.arrayP.map((val, ind) =>{
+              return (
+                <div key={ind} className="NPlist">
+                  <li key={ind} style={{width:"4%", maxWidth:"4%", textAlign:"center", padding:"0"}}>{ind+1}</li>
+                  <li key={val} style={{width:"96%", maxWidth:"96%"}}>{val}</li>
+                </div>
+              )
+            })}
+          </div>
+      );
+    }
+  }
+
+//haciendo el upload
 class Upload extends Component {
     constructor(props) {
         super(props);

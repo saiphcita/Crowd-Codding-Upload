@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../CSS/Report.css';
+import { Link } from 'react-router-dom';
 import { refGeneralPosts, refAllUsers, refReport } from './DataBase.js'
 
 class PostUsers extends Component {
@@ -76,29 +77,31 @@ class Report extends Component {
   }
 
   render() {
-    var buttonState = "See the list of Post that Users have Worked"
+    var buttonState = "See the List of Post that Workers have Categorized"
     var reportPrint = 
         <div className="DivReport">
           <div className="tittleReport">
               <li style={{width:"20%", maxWidth:"20%"}}>Workers</li>
-              <li style={{width:"20%", maxWidth:"20%"}}>Selected</li>
-              <li style={{width:"20%", maxWidth:"20%"}}>State</li>
+              <li style={{width:"20%", maxWidth:"20%", textAlign:"center", padding:"0"}}>Posts Categorized</li>
+              <li style={{width:"20%", maxWidth:"20%", textAlign:"center", padding:"0"}}>Worker's Status</li>
               <li style={{width:"40%", maxWidth:"40%"}}>See Work</li>
           </div>
           {this.state.report.map((val, ind) =>{
+            var name = (val["1-Worker"].charAt(0).toUpperCase() + val["1-Worker"].slice(1))
+            var url = "/interface"+localStorage.getItem("acualInterface")+"/report-of-"+val["1-Worker"]
           return (
               <div key={ind} className="listReport">
-                  <li style={{width:"20%", maxWidth:"20%", textAlign:"left"}}>{val["1-Worker"]}</li>
+                  <li style={{width:"20%", maxWidth:"20%", textAlign:"left"}}>{name}</li>
                   <li style={{width:"20%", maxWidth:"20%"}}>{val["3-Selected"]}</li>
-                  <li style={{width:"20%", maxWidth:"20%"}}>{val["4-State"]}</li>
-                  <li style={{width:"40%", maxWidth:"40%", textAlign:"left"}}>see Posts of {val["1-Worker"]}</li>
+                  <li style={{width:"20%", maxWidth:"20%"}}>{val["4-State"].charAt(0).toUpperCase() + val["4-State"].slice(1)}</li>
+                  <li style={{width:"40%", maxWidth:"40%", textAlign:"left", padding:"0"}}><Link to={url}><div className="DivButtonPOSTC">See the Work of {name}</div></Link></li>
               </div>
           )
           })}
         </div>;
     var pageReport =  reportPrint;
     if(!this.state.statePage){
-      buttonState = "See the list of Post that Users have Worked"
+      buttonState = "See the List of Post that Workers have Categorized"
       pageReport =  reportPrint;
     }else{
       buttonState = "See the Normal Report"
@@ -107,7 +110,7 @@ class Report extends Component {
 
     return (
       <div style={{height:"100%", width:"100%"}}>
-          <div style={{height:"6%", marginBottom:"1%", textAlign:"center"}}>
+          <div style={{height:"8%", marginBottom:"1%", textAlign:"center"}}>
             <button onClick={()=> this.setState({statePage: !this.state.statePage})} className="buttonChangeS">{buttonState}</button>
             <a href={this.state.dataStr} download={"ReportInterface"+localStorage.getItem("acualInterface")+".json"}><button className="buttonDownload">Download Report</button></a>
           </div>
