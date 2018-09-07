@@ -65,7 +65,7 @@
     max-height: 5.2%;;
 }
 .listReport li{
-    text-align: center;
+    text-align: left;
     display: table-cell;
     vertical-align: middle;
     border: 1px solid rgba(0,0,0,.225);
@@ -73,11 +73,11 @@
     font-size: 0.8rem;
 }
 .DivButtonPOSTC{
-    padding-left: 12px;
+    padding-left: 32%;
     cursor: pointer;
 }
 .DivButtonPOSTC:hover{
-    padding-left: 24px;
+    padding-left: 36%;
     background-color: rgba(0,0,0,.225);
 }
 
