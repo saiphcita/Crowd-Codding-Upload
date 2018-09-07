@@ -69,6 +69,9 @@ class Report extends Component {
       refReport.on("value", (snapshot) => {
         let report = snapshot.val();
         this.setState({report: report})
+
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(report, 0, 4));
+        this.setState({dataStr: dataStr})
     });
   }
 
@@ -101,11 +104,12 @@ class Report extends Component {
       buttonState = "See the Normal Report"
       pageReport =  <PostUsers />
     }
+
     return (
       <div style={{height:"100%", width:"100%"}}>
           <div style={{height:"6%", marginBottom:"1%", textAlign:"center"}}>
             <button onClick={()=> this.setState({statePage: !this.state.statePage})} className="buttonChangeS">{buttonState}</button>
-            <button className="buttonDownload">Download Report</button>
+            <a href={this.state.dataStr} download={"ReportInterface"+localStorage.getItem("acualInterface")+".json"}><button className="buttonDownload">Download Report</button></a>
           </div>
           {pageReport}
       </div>
