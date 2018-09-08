@@ -1,7 +1,73 @@
 import React, { Component } from 'react';
 import '../CSS/PostAndCategory.css';
 import { Link } from 'react-router-dom';
-import { dbUser } from './DataBase.js'
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { dbUser, refAllUsers } from './DataBase.js'
+
+class SelectForWorker extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dropdownOpen: false,
+      listUserName: []
+    };
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+
+  componentDidMount() {
+    refAllUsers.on("value", (snapshot) => {
+      let users = snapshot.val();
+      let listUserName = users.map(val => {return val.UserInfo.Username})
+      this.setState({listUserName: listUserName})
+    });
+  };  
+
+  render() {
+    var dropDownS = {
+      backgroundColor: "#fff",
+      height: "auto",
+      width: "auto",
+      border: "none",
+      borderRadius: "6px",
+      padding: "0",
+    };
+    return (
+      <div>
+          <ButtonDropdown direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle} className="buttonDropWorker">
+            <DropdownToggle caret>
+              {this.props.wokerId}
+            </DropdownToggle>
+            <DropdownMenu style={dropDownS}>
+              {
+                this.state.listUserName.map((val, ind) => {
+                  var url = "/interface"+localStorage.getItem("acualInterface")+"/report-of-"+val;
+                  if(val === this.props.wokerId.toLowerCase()){
+                    return(
+                      <DropdownItem key={ind} disabled style={{padding:"5px 12px"}}>
+                        {val}
+                      </DropdownItem>
+                    )
+                  }else{
+                    return(
+                      <DropdownItem key={ind} style={{color:"black", backgroundColor:"white", padding:"5px 12px", borderRadius:"0"}}>
+                        <Link to={url}>{val}</Link>
+                      </DropdownItem>
+                    )
+                  }
+                })
+              }
+            </DropdownMenu>
+          </ButtonDropdown>
+      </div>
+    );
+  }
+}
 
 class NavBarBoss extends Component {
   constructor(props) {
@@ -14,23 +80,23 @@ class NavBarBoss extends Component {
   componentDidMount(){
     var bossId = localStorage.getItem("BossId")
     this.setState({BossId: bossId.charAt(0).toUpperCase() +bossId.slice(1)})
-  }
+  };
 
   logOut(){
     localStorage.setItem("BossId", undefined);
     localStorage.setItem("BossPassword", undefined)
     localStorage.setItem("acualInterface", "0");
     window.location.reload();
-}
-
+  };
 
   render(){
     return (
         <div className="NavBoss">
           <header style={{display:"table-cell", verticalAlign:"middle"}}>
             <div className="divBossrName">{this.state.BossId}</div>
-            <Link to="/"><button onClick={this.logOut}>Log Out</button></Link>
-            <Link to={"/interface"+ localStorage.getItem("acualInterface")}><button>Go Back</button></Link>
+            <Link to="/"><button className="buttonNavBoss" onClick={this.logOut}>Log Out</button></Link>
+            <Link to={"/interface"+ localStorage.getItem("acualInterface")}><button className="buttonNavBoss">Go Back</button></Link>
+            <SelectForWorker wokerId={this.props.wokerId}/>
           </header>
         </div>
     );
@@ -42,7 +108,6 @@ class ListPostCategory extends Component {
     super(props);
     this.state = {
       post: [],
-      wokerId: ""
     }
   };
 
@@ -52,12 +117,6 @@ class ListPostCategory extends Component {
       let posts = snapshot.val();
       this.setState({post : posts})
     });
-    const refUser = dbUser.ref("Users/"+this.props.user+"/UserInfo/Username");
-    refUser.on("value", (snapshot) => {
-      let name = snapshot.val();
-      name = name.charAt(0).toUpperCase()+name.slice(1)
-      this.setState({wokerId : name})
-    });  
   }
 
   render() {
@@ -65,7 +124,7 @@ class ListPostCategory extends Component {
       <div style={{height:"100%"}}>
         <div className="NavWorker">
           <header style={{display:"table-cell", verticalAlign:"middle"}}>
-            <div className="divWorkerN">The Categorized Post of {this.state.wokerId}</div>
+            <div className="divWorkerN">The Categorized Post of {this.props.wokerId}</div>
           </header>
         </div>
         <div className="DivPostCategory">
@@ -99,26 +158,27 @@ class PostAndCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: [],
-    }
+      wokerId: ""
+    };
   };
 
   componentDidMount() {
-    const refUserPost = dbUser.ref("Users/0/PostAndCategory/Post");    
-    refUserPost.on("value", (snapshot) => {
-      let posts = snapshot.val();
-      this.setState({post : posts})
-    });
-  };
+    const refUser = dbUser.ref("Users/"+this.props.user+"/UserInfo/Username");
+    refUser.on("value", (snapshot) => {
+      let name = snapshot.val();
+      name = name.charAt(0).toUpperCase()+name.slice(1)
+      this.setState({wokerId : name})
+    });  
+  }
 
   render() {
     return (
       <div style={{width:"100%", height:"100%"}}>
         <div style={{width:"100%", height:"8%"}}>
-          <NavBarBoss/>
+          <NavBarBoss wokerId={this.state.wokerId}/>
         </div>
         <div style={{width:"100%", height:"92%"}}>
-          <ListPostCategory user={this.props.user}/>
+          <ListPostCategory user={this.props.user} wokerId={this.state.wokerId}/>
         </div>
       </div>
     );

@@ -13,7 +13,7 @@
     padding: 2px;
     display: table-cell;
 }
-  .NavBoss button {
+  .buttonNavBoss {
     float: right;
     margin-right: 2%;
     padding: 2px 2%;
@@ -23,7 +23,29 @@
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     cursor: pointer;
-}.NavBoss button:hover { background-color: #E5E7E9; }
+}.buttonNavBoss:hover { background-color: #E5E7E9; }
+
+.buttonDropWorker{
+    border: 0;
+    float: right;
+    margin-right: 2%;
+    padding: 0;
+    cursor: pointer;
+}
+.buttonDropWorker button{
+    background-color: #7B7D7D; 
+    border: 1px solid #E5E7E9;
+    color: black;
+    padding: 2px 20px;
+    border-radius: 3px;
+    margin: 0;
+}
+.buttonDropWorker button:hover { 
+    background-color: #E5E7E9;
+    border: 1px solid #E5E7E9;
+    border-radius: 3px;
+    color: black;
+}
 
 /* NAV WORKER */
 .NavWorker {
