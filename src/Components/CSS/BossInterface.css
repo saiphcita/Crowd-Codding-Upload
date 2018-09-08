@@ -24,7 +24,7 @@ button:focus {outline:none !important}
 
 .divAdmin {
     background-color: white;
-    border: 1px solid greenyellow;
+    border: 1px solid #41F0ED;
     color: black;
     height: 100px;
     width: 250px;
@@ -33,7 +33,7 @@ button:focus {outline:none !important}
     cursor: pointer;
 }
 .divAdmin:hover {
-    background-color: greenyellow;
+    background-color: #41F0ED;
     color: black;
 }
 
