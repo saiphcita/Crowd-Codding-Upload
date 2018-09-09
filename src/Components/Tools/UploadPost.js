@@ -69,20 +69,19 @@ class UploadPost extends Component {
                     let lines = [];
         
                     for (let i = 0; i < allTextLines.length; i++) {
-                        let data = allTextLines[i].split(',')
+                        let data = allTextLines[i].split('""')
                         if (data.length === headers.length) {
                             let tarr = []
                             for (let j = 0; j < headers.length; j++) {
-                                tarr.push(data[j])
+                                tarr.push(data[j].replace(/['"]+/g, ''))
                             }
                             if(tarr[0].length !== 0){
-                                if(tarr[0].length > 4){
+                                if(tarr[0].split(" ").length > 1){
                                     lines.push(tarr.toString())
                                 }
                             }
                         };
                     };
-                    lines.shift()
                     this.setState({newPostList: lines})
                     //viendo cuantos existen
                     var listNew = []

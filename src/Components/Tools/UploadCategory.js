@@ -41,8 +41,11 @@ class UploadCategory extends Component {
         super(props);
         this.state = {
             arrayCategory: [],
+            arrayCategoryName: [],
+
             newCategoryList:[],
             newCategories: [],
+
             resultListCategory: [],
             noCSV: false,
             numberState: 0,
@@ -53,7 +56,8 @@ class UploadCategory extends Component {
     componentDidMount(){
         refGeneralCategory.on("value", (snapshot) => {
             let arrayCategory = snapshot.val();
-            console.log(arrayCategory)
+            let arrayCategoryName = arrayCategory.map(val => val.categoryName)
+            this.setState({arrayCategoryName: arrayCategoryName})
             this.setState({arrayCategory: arrayCategory})
         });
     }
@@ -70,37 +74,42 @@ class UploadCategory extends Component {
                 reader.onload = () => {
                     let text = reader.result;
                     let allTextLines = text.split(/\r|\n|\r/);
-                    let headers = allTextLines[0].split(',');
+                    let headers = allTextLines[0].split(',')
                     let lines = [];
-        
                     for (let i = 0; i < allTextLines.length; i++) {
-                        let data = allTextLines[i].split(',')
+                        let data = allTextLines[i].split('","')
                         if (data.length === headers.length) {
                             let tarr = []
                             for (let j = 0; j < headers.length; j++) {
-                                tarr.push(data[j])
+                                tarr.push(data[j].replace(/['"]+/g, ''))
                             }
-                            if(tarr[0].length !== 0){
-                                if(tarr[0].length > 4){
-                                    lines.push(tarr.toString())
-                                }
+                            var objectTarr = {
+                                "categoryName":tarr[0],
+                                "categoryDefinition":tarr[1],
+                                "categoryExample":tarr[2]
+                            }
+                            if(tarr.length === 3){
+                                lines.push(objectTarr)
+                            }else{
+                                this.setState({numberState: 0})
+                                this.setState({statePage: 1})
                             }
                         };
                     };
-                    lines.shift()
                     this.setState({newCategoryList: lines})
                     //viendo cuantos existen
+                    var newCategoriesName = lines.map(val => val.categoryName);
                     var listNew = []
-                    for (let i = 0; i < lines.length; i++) {
-                        if(!this.state.arrayCategory.includes(lines[i])){
+                    for (let i = 0; i < newCategoriesName.length; i++) {
+                        if(!this.state.arrayCategoryName.includes(newCategoriesName[i])){
                             listNew.push(lines[i])
                         }
                     }
+                    this.setState({newCategories: listNew})
+
                     var resultCategories = this.state.arrayCategory;
                     resultCategories = resultCategories.concat(listNew)
-
                     this.setState({resultListCategory: resultCategories})
-                    this.setState({newCategories: listNew})
                 };
                 reader.readAsText(input.files[0]);  
             }else{

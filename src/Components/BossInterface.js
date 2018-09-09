@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/BossInterface.css';
 import UploadPost from "./Tools/UploadPost.js"
-// import UploadCategory from "./Tools/UploadCategory.js"
+import UploadCategory from "./Tools/UploadCategory.js"
 import Report from "./Tools/Report.js"
 
 
@@ -49,7 +49,7 @@ class BossInterface extends Component {
         var uploadCategory =
             <div style={{height:"92%"}}>
                 {goBack}
-                <div style={{height:"91.5%"}}> In Progress </div>
+                <div style={{height:"91.5%"}}><UploadCategory/></div>
             </div>;
 
         var page = buttons
