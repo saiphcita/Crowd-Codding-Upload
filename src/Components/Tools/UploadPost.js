@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../CSS/Upload.css';
+import '../CSS/UploadPost.css';
 import Icon from 'react-icons-kit';
 import { plus } from 'react-icons-kit/fa/plus'
 import { refGeneralPosts } from './DataBase.js'
@@ -32,7 +32,7 @@ class ListPost extends Component {
   }
 
 //haciendo el upload
-class Upload extends Component {
+class UploadPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -242,4 +242,4 @@ class Upload extends Component {
   }
 }
 
-export default Upload;
+export default UploadPost;

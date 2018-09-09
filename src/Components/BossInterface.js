@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/BossInterface.css';
-import Upload from "./Tools/Upload.js"
+import UploadPost from "./Tools/UploadPost.js"
+// import UploadCategory from "./Tools/UploadCategory.js"
 import Report from "./Tools/Report.js"
 
 
@@ -21,7 +22,7 @@ class BossInterface extends Component {
                 </div>
                 <div>
                     <button onClick={()=> this.setState({statePage: 2})} className="divAdmin" style={{marginRight:"1%"}}>Manage the POSTS of the Interface {localStorage.getItem("acualInterface")}</button>
-                    <button onClick={()=> this.setState({statePage: 0})} className="divAdmin" style={{marginLeft:"1%"}}>Manage the CATEGORIES of the Interface {localStorage.getItem("acualInterface")}</button>
+                    <button onClick={()=> this.setState({statePage: 3})} className="divAdmin" style={{marginLeft:"1%"}}>Manage the CATEGORIES of the Interface {localStorage.getItem("acualInterface")}</button>
                 </div>
             </div>;
 
@@ -38,12 +39,18 @@ class BossInterface extends Component {
             <div style={{height:"91.5%"}}><Report/></div>
         </div>;
 
-        //el de administrar
-        var administrar =
+        //Para administrar
+        var uploadPost =
         <div style={{height:"92%"}}>
             {goBack}
-            <div style={{height:"91.5%"}}><Upload/></div>
+            <div style={{height:"91.5%"}}><UploadPost/></div>
         </div>;
+
+        var uploadCategory =
+            <div style={{height:"92%"}}>
+                {goBack}
+                <div style={{height:"91.5%"}}> In Progress </div>
+            </div>;
 
         var page = buttons
 
@@ -52,7 +59,9 @@ class BossInterface extends Component {
         }else if(this.state.statePage === 1){
             page = reporte
         }else if(this.state.statePage === 2){
-            page = administrar
+            page = uploadPost
+        }else if(this.state.statePage === 3){
+            page = uploadCategory
         }
 
         return (page);

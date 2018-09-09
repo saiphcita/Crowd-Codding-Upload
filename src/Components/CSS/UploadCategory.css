@@ -1,0 +1,172 @@
+.DivUpload{
+    width: 100%;
+    height: 16%;
+    max-height: 16%;
+}
+button:focus {outline:none !important}
+
+.DivSelectCSV{
+    float: left;
+    text-align: left;
+    color: black;
+    background-color: #41F0ED;
+    width: 40%;
+    height: 100%;
+}
+.SelectFile{ text-align: center; }
+.SelectFile label {
+    cursor: pointer;
+    background-color: #D5DBDB;
+    padding: 1.2% 0;
+    border-radius: 3px;
+    width: 70%;
+}
+.SelectFile label:hover { background-color: #BDC3C7; }
+.inputfile{
+	width: 0.01px;
+	height: 0.01px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.buttonsDivResponse{
+    display: table;
+    float: left;
+    text-align: center;
+    background-color: #F2FFFF;
+    width: 60%;
+    height: 100%;
+}
+.errorCSV{
+    display: table-cell;
+    vertical-align: middle;
+    color:  #C80A32;
+    font-size: 1.4rem;
+    text-decoration-line: underline; 
+    font-weight: 520;
+    margin: 0;
+    padding: 0;
+}
+.addListButton {
+    background-color: #DFC30D;
+    border: 1px solid #DFC30D;
+    color: white;
+    margin: 0;
+    padding: 0;
+    height: 72%;
+    width: 28%;
+    font-size: 1.4rem;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.addListButton:hover {
+    background-color: white;
+    color: #DFC30D;
+}
+
+.removeListButton {
+    background-color: #ED4E04;
+    border: 1px solid #ED4E04;
+    color: white;
+    margin: 0;
+    padding: 0;
+    height: 42%;
+    width: 18%;
+    font-size: 1rem;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.removeListButton:hover {
+    background-color: white;
+    color: #ED4E04;
+}
+
+.ShowCategories{
+    display: table;
+    width: 100%;
+    height: 76%;
+    max-height: 76%;
+    text-align: center; 
+}
+.ShowCategories button{
+    background-color: #41F0ED;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: black;
+    width: 22%;
+    height: 34%;
+    font-size: 1.25rem;
+    margin: 0;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.ShowCategories button:hover {
+    border: 1px solid #41F0ED;
+    background-color: white;
+    color: #268A89;
+}
+.divGoBack{
+    float: left;
+    background-color: #EA2A0F;
+    border: 1px solid #EA2A0F;
+    border-radius: 2px;
+    color: white;
+    height: 100%;
+    width: 8%;
+    margin: 0;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.divGoBack:hover  {
+    background-color: white;
+    color: #EA2A0F;
+}
+
+/* CATEGORIES SECTION */
+.DivCategory {
+    float: left;
+    margin: 0; 
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    border: 1px solid rgba(0,0,0,.225);
+}
+.titleCategory{
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    height: 7.8%;
+    max-height: 7.8%;;
+}
+.titleCategory li{
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+    border: 1px solid rgba(0,0,0,.225);
+    height: 100%;
+    padding-left: 12px;
+    font-size: 1.1rem;
+    font-weight: bolder;
+}
+.NClist{
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    height: 5.2%;
+    max-height: 5.2%;;
+}
+.NClist li{
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+    border: 1px solid rgba(0,0,0,.225);
+    padding-left: 12px;
+    padding-right: 24px;
+    font-size: 0.8rem;
+}
