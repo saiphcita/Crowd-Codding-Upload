@@ -94,6 +94,7 @@ class NavBarBoss extends Component {
         <div className="NavBoss">
           <header style={{display:"table-cell", verticalAlign:"middle"}}>
             <div className="divBossrName">{this.state.BossId}</div>
+            <div className="divBossrName">- Interface {localStorage.getItem("acualInterface")}</div>
             <Link to="/"><button className="buttonNavBoss" onClick={this.logOut}>Log Out</button></Link>
             <Link to={"/interface"+ localStorage.getItem("acualInterface")}><button className="buttonNavBoss">Go Back</button></Link>
             <SelectForWorker wokerId={this.props.wokerId}/>

@@ -29,7 +29,8 @@ class NavBar extends Component {
     return (
         <div className="NavStyle">
           <header style={{display:"table-cell", verticalAlign:"middle"}}>
-            <div className="divWorkerName">{this.state.BossId}</div>
+            <div className="divBossid">{this.state.BossId}</div>
+            <div className="divBossid">- Interface {localStorage.getItem("acualInterface")}</div>
             <Link to="/"><button onClick={this.logOut}>Log Out</button></Link>
             <Link to="/"><button onClick={this.ChangeInt}>Change Interface</button></Link>
           </header>
