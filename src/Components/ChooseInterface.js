@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './CSS/Choose-Interface.css';
-import { Link } from 'react-router-dom';
 
 class ChooseInterface  extends Component {
     constructor(props) {
@@ -18,21 +17,16 @@ class ChooseInterface  extends Component {
         localStorage.setItem("acualInterface", nextState.acualInterface)
     }
 
-    render(){
-        var goButton = <div/>
-        if(this.state.acualInterface !== "0"){
-            goButton = <Link to={"/interface"+this.state.acualInterface}><button className="Gobutton">Go Interface {this.state.acualInterface}</button></Link>
-        }
+    render(){   
         return (
-            <div style={{textAlign:"center", paddingTop:"16px"}}>
-                <h3>Choose the interface you manage.</h3>
+            <div style={{textAlign:"center", paddingTop:"32px"}}>
+                <h3>Choose the interface you'll manage.</h3>
                 <div className="DivAllButtons">
-                    <button onClick={() => {this.setState({acualInterface: 1}); window.location.reload();}}>Interface 1</button>  
-                    <button onClick={() => {this.setState({acualInterface: 2}); window.location.reload();}}>Interface 2</button>  
-                    <button onClick={() => {this.setState({acualInterface: 3}); window.location.reload();}}>Interface 3</button>  
-                    <button onClick={() => {this.setState({acualInterface: 4}); window.location.reload();}}>Interface 4</button>  
+                    <button onClick={() => {this.setState({acualInterface: 1}); window.location.href="/interface1";}}>Interface 1</button>  
+                    <button onClick={() => {this.setState({acualInterface: 2}); window.location.href="/interface2";}}>Interface 2</button>  
+                    <button onClick={() => {this.setState({acualInterface: 3}); window.location.href="/interface3";}}>Interface 3</button>  
+                    <button onClick={() => {this.setState({acualInterface: 4}); window.location.href="/interface4";}}>Interface 4</button>  
                 </div>
-                {goButton} 
             </div>
         );
     }

@@ -28,7 +28,7 @@ class BossInterface extends Component {
 
         //volver atras
         var goBack = 
-            <div style={{height:"6%", width:"100%", marginBottom:"1%"}}>
+            <div style={{height:"6%", width:"100%", marginBottom:"0.4%"}}>
                 <button onClick={()=> this.setState({statePage: 0})} className="divGoBack">Go back</button>
             </div>;
 

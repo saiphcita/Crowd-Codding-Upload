@@ -153,11 +153,11 @@ class UploadCategory extends Component {
         var finalButton = 
         <div className="ShowCategories"> 
             <div style={{display:"table-row", height:"5%"}}>The Categories you have Uploaded Contains {this.state.newCategoryList.length-this.state.newCategories.length} Existing Categories in the Database.</div>
-            <div style={{display:"table-row", height:"6%", textDecorationLine:"underline", fontSize:"1.2rem"}}>You can Add {this.state.newCategories.length} Categories of the New List Categories that you have Uploaded, that List contains {this.state.newCategoryList.length} Categories.</div>
+            <div style={{display:"table-row", height:"6%", textDecorationLine:"underline", fontSize:"1.2rem"}}>You can Add {this.state.newCategories.length} new Categories of {this.state.newCategoryList.length} Categories that you Uploaded.</div>
             <div style={{display:"table-cell", verticalAlign:"middle"}}>
                 <button style={{marginRight:"1%"}} onClick={()=> this.setState({statePage: 2})}>See the Current Categories of the Database</button>
                 <button style={{margin:"0 1%"}} onClick={()=> this.setState({statePage: 3})}>See the new Categories that you have Uploaded</button>
-                <button style={{marginLeft:"1%"}} onClick={()=> this.setState({statePage: 4})}>See the Result when you Adding the New Categories</button>
+                <button style={{marginLeft:"1%"}} onClick={()=> this.setState({statePage: 4})}>See the Result if you Add the New Categories</button>
             </div>
         </div>;
 
@@ -177,7 +177,14 @@ class UploadCategory extends Component {
             <button onClick={this.RemoveList.bind(this)} className="removeListButton" style={{marginLeft:"1%"}}>Remove Categories</button>
         </div>;
 
-      var stateCSV = <div/>
+      var stateCSV =
+        <div style={{display:"table-cell", verticalAlign:"middle"}}>
+            <button onClick={(e) => {e.preventDefault(); window.open("https://docs.google.com/spreadsheets/d/1CibdK7uAWheXm8Scp8BQnLdG6GSdFntvU_GvGKrIrXo/edit#gid=0"); }}
+            className="linkButton">
+                Use this Categories Spreadsheet as an Example to Upload your CSV file
+            </button>
+        </div>;
+
       if(this.state.newCategoryList.length !== 0){ stateCSV = uploadCSV };
       if(this.state.noCSV){ stateCSV = errorCSV };
       
@@ -217,7 +224,7 @@ class UploadCategory extends Component {
                     <div style={{height:"8%", width:"100%"}}>
                         <button className="divGoBack" onClick={()=> this.setState({statePage: this.state.numberState})}>Go back</button>
                         <div style={{height:"100%", textAlign:"left", display:"table", float:"left", marginLeft:"32px"}}>
-                            <div style={{display:"table-cell", verticalAlign:"middle", color:"#182AE2"}}>This would be the Result If you Add the {this.state.newCategories.length} Categories to the Current Categories that are the First {this.state.arrayCategory.length} Categories. If you do, the Database will contain {this.state.resultListCategory.length} Categories.</div>
+                            <div style={{display:"table-cell", verticalAlign:"middle", color:"#182AE2"}}>This would be the Result If you Add the {this.state.newCategories.length} Categories to the Current {this.state.arrayCategory.length} Categories in the Database. If you do, the Database will contain {this.state.resultListCategory.length} Categories.</div>
                         </div>
                     </div>
                     <div style={{height:"92%"}}>
@@ -233,7 +240,7 @@ class UploadCategory extends Component {
 
                 <div className="DivUpload">
                     <div className="DivSelectCSV">
-                        <label style={{margin:"1% 0 1% 1%"}}>Upload a CSV File for view the New Categories.</label>
+                        <label style={{margin:"1% 0 1% 1%"}}>Upload the New Categories in a CSV File.</label>
                         <div className="SelectFile">
                             <label htmlFor="fileCategory">
                                 <div style={{marginRight:"5px", display:"inline-block", verticalAlign:"middle"}}>

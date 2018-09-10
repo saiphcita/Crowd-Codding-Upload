@@ -137,12 +137,12 @@ class UploadPost extends Component {
                 
         var finalButton = 
         <div className="ShowPosts"> 
-            <div style={{display:"table-row", height:"5%"}}>The Post List you have Uploaded Contains {this.state.newPostList.length-this.state.newPosts.length} Existing Post in the Database.</div>
-            <div style={{display:"table-row", height:"6%", textDecorationLine:"underline", fontSize:"1.2rem"}}>You can Add {this.state.newPosts.length} Post of the New List of Posts that you have Uploaded, that List contains {this.state.newPostList.length} Post.</div>
+            <div style={{display:"table-row", height:"5%"}}>The Posts List you have Uploaded Contains {this.state.newPostList.length-this.state.newPosts.length} Existing Post in the Database.</div>
+            <div style={{display:"table-row", height:"6%", textDecorationLine:"underline", fontSize:"1.2rem"}}>You can Add {this.state.newPosts.length} new Posts of {this.state.newPostList.length} Posts that you Uploaded.</div>
             <div style={{display:"table-cell", verticalAlign:"middle"}}>
                 <button style={{marginRight:"1%"}} onClick={()=> this.setState({statePage: 2})}>See the Current Posts of the Database</button>
-                <button style={{margin:"0 1%"}} onClick={()=> this.setState({statePage: 3})}>See the new List of Posts that you have Uploaded</button>
-                <button style={{marginLeft:"1%"}} onClick={()=> this.setState({statePage: 4})}>See the Result when you Adding the New Posts</button>
+                <button style={{margin:"0 1%"}} onClick={()=> this.setState({statePage: 3})}>See the new List of Posts that you Uploaded</button>
+                <button style={{marginLeft:"1%"}} onClick={()=> this.setState({statePage: 4})}>See the Result if you Add the New Posts</button>
             </div>
         </div>;
 
@@ -162,7 +162,15 @@ class UploadPost extends Component {
             <button onClick={this.RemoveList.bind(this)} className="removeListButton" style={{marginLeft:"1%"}}>Remove the List</button>
         </div>;
 
-      var stateCSV = <div/>
+      var stateCSV =
+        <div style={{display:"table-cell", verticalAlign:"middle"}}>
+            <button onClick={(e) => {e.preventDefault(); window.open("https://docs.google.com/spreadsheets/d/1REZBPF8SyCPXWxRm8MR6DY2_GzFswFNmwog3Oh5GHlI/edit#gid=0"); }}
+            className="linkButton">
+                Use this Posts Spreadsheet as an Example to Upload your CSV file
+            </button>
+        </div>;
+
+
       if(this.state.newPostList.length !== 0){ stateCSV = uploadCSV };
       if(this.state.noCSV){ stateCSV = errorCSV };
       
@@ -202,7 +210,7 @@ class UploadPost extends Component {
                     <div style={{height:"8%", width:"100%"}}>
                         <button className="divGoBack" onClick={()=> this.setState({statePage: this.state.numberState})}>Go back</button>
                         <div style={{height:"100%", textAlign:"left", display:"table", float:"left", marginLeft:"32px"}}>
-                            <div style={{display:"table-cell", verticalAlign:"middle", color:"#182AE2"}}>This would be the Result If you Add the {this.state.newPosts.length} Post to the Current Post that are the First {this.state.arrayPost.length} Post. If you do, the Database will contain {this.state.resultListPost.length} Post.</div>
+                            <div style={{display:"table-cell", verticalAlign:"middle", color:"#182AE2"}}>This would be the Result If you Add the {this.state.newPosts.length} Posts to the Current {this.state.arrayPost.length} Posts in the Database. If you do, the Database will contain {this.state.resultListPost.length} Post.</div>
                         </div>
                     </div>
                     <div style={{height:"92%"}}>
@@ -218,7 +226,7 @@ class UploadPost extends Component {
 
                 <div className="DivUpload">
                     <div className="DivSelectCSV">
-                        <label style={{margin:"1% 0 1% 1%"}}>Upload a CSV File for view the New List of Post.</label>
+                        <label style={{margin:"1% 0 1% 1%"}}>Upload the New List of Posts in a CSV File.</label>
                         <div className="SelectFile">
                             <label htmlFor="filePost">
                                 <div style={{marginRight:"5px", display:"inline-block", verticalAlign:"middle"}}>

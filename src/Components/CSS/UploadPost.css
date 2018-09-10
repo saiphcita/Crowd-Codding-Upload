@@ -35,7 +35,6 @@ button:focus {outline:none !important}
     display: table;
     float: left;
     text-align: center;
-    background-color: #F2FFFF;
     width: 60%;
     height: 100%;
 }
@@ -49,12 +48,26 @@ button:focus {outline:none !important}
     margin: 0;
     padding: 0;
 }
+.linkButton {
+    background-color: #22AA37;
+    border: 1px solid #22AA37;
+    color: white;
+    height: 82%;
+    width: 36%;
+    font-size: 1.1rem;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.linkButton:hover {
+    background-color: white;
+    color: #22AA37;
+}
+
 .addListButton {
     background-color: #DFC30D;
     border: 1px solid #DFC30D;
     color: white;
-    margin: 0;
-    padding: 0;
     height: 72%;
     width: 28%;
     font-size: 1.4rem;

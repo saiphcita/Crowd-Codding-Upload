@@ -32,7 +32,7 @@ class PostUsers extends Component {
         <div className="DivPostCategory2">
           <div className="titleList2">
             <li style={{width:"3%", maxWidth:"3%", padding:"0", textAlign:"center"}}>No.</li>
-            <li style={{width:"35%", maxWidth:"35%"}}>List of Posts</li>
+            <li style={{width:"35%", maxWidth:"35%"}}>Posts</li>
             {this.state.listUserName.map((val, ind) =>{
               return ( <li key={ind} style={{width:62/(this.state.listUserName.length)+"%", maxWidth:62/(this.state.listUserName.length)+"%", padding:"0", textAlign:"center"}}>{val}</li>)
             })}
@@ -82,7 +82,7 @@ class Report extends Component {
         <div className="DivReport">
           <div className="tittleReport">
               <li style={{width:"20%", maxWidth:"20%"}}>Workers</li>
-              <li style={{width:"20%", maxWidth:"20%"}}>Posts Categorized</li>
+              <li style={{width:"20%", maxWidth:"20%"}}>Categorized Posts</li>
               <li style={{width:"20%", maxWidth:"20%", padding:"0", textAlign:"center"}}>Worker's Status</li>
               <li style={{width:"40%", maxWidth:"40%", padding:"0", textAlign:"center"}}>See Work</li>
           </div>
@@ -101,10 +101,10 @@ class Report extends Component {
         </div>;
     var pageReport =  reportPrint;
     if(!this.state.statePage){
-      buttonState = "See the List of Post that Workers have Categorized"
+      buttonState = "See the Post that Workers have Categorized"
       pageReport =  reportPrint;
     }else{
-      buttonState = "See the Normal Report"
+      buttonState = "See the Report"
       pageReport =  <PostUsers />
     }
 

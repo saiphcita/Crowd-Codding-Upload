@@ -125,13 +125,13 @@ class ListPostCategory extends Component {
       <div style={{height:"100%"}}>
         <div className="NavWorker">
           <header style={{display:"table-cell", verticalAlign:"middle"}}>
-            <div className="divWorkerN">The Categorized Post of {this.props.wokerId}</div>
+            <div className="divWorkerN">The Categorized Posts of {this.props.wokerId}</div>
           </header>
         </div>
         <div className="DivPostCategory">
           <div className="titleList">
             <li style={{width:"4%", maxWidth:"4%"}}>No.</li>
-            <li style={{width:"80%", maxWidth:"80%", textAlign:"left", paddingLeft:"8px"}}>Post</li>
+            <li style={{width:"80%", maxWidth:"80%", textAlign:"left", paddingLeft:"8px"}}>Posts</li>
             <li style={{width:"16%", maxWidth:"16%"}}>Category</li>
           </div>
           {this.state.post.map((val, ind) =>{
