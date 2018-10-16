@@ -81,20 +81,22 @@ class Report extends Component {
     var reportPrint = 
         <div className="DivReport">
           <div className="tittleReport">
-              <li style={{width:"20%", maxWidth:"20%"}}>Workers</li>
+              <li style={{width:"16%", maxWidth:"16%"}}>Workers</li>
+              <li style={{width:"12%", maxWidth:"12%"}}>WorkCode</li>
               <li style={{width:"20%", maxWidth:"20%"}}>Categorized Posts</li>
-              <li style={{width:"20%", maxWidth:"20%", padding:"0", textAlign:"center"}}>Worker's Status</li>
-              <li style={{width:"40%", maxWidth:"40%", padding:"0", textAlign:"center"}}>See Work</li>
+              <li style={{width:"16%", maxWidth:"16%", padding:"0", textAlign:"center"}}>Worker's Status</li>
+              <li style={{width:"36%", maxWidth:"36%", padding:"0", textAlign:"center"}}>See Work</li>
           </div>
           {this.state.report.map((val, ind) =>{
             var name = (val["1-Worker"].charAt(0).toUpperCase() + val["1-Worker"].slice(1))
             var url = "/interface"+localStorage.getItem("acualInterface")+"/report-of-"+val["1-Worker"]
           return (
               <div key={ind} className="listReport">
-                  <li style={{width:"20%", maxWidth:"20%"}}>{name}</li>
+                  <li style={{width:"16%", maxWidth:"16%"}}>{name}</li>
+                  <li style={{width:"12%", maxWidth:"12%"}}>{val["5-WorkCode"]}</li>
                   <li style={{width:"20%", maxWidth:"20%"}}>{val["3-Selected"]}</li>
-                  <li style={{width:"20%", maxWidth:"20%", padding:"0", textAlign:"center"}}>{val["4-State"].charAt(0).toUpperCase() + val["4-State"].slice(1)}</li>
-                  <li style={{width:"40%", maxWidth:"40%", padding:"0"}}><Link to={url}><div className="DivButtonPOSTC">See the Work of {name}</div></Link></li>
+                  <li style={{width:"16%", maxWidth:"16%", padding:"0", textAlign:"center"}}>{val["4-State"].charAt(0).toUpperCase() + val["4-State"].slice(1)}</li>
+                  <li style={{width:"36%", maxWidth:"36%", padding:"0"}}><Link to={url}><div className="DivButtonPOSTC">See the Work of {name}</div></Link></li>
               </div>
           )
           })}
