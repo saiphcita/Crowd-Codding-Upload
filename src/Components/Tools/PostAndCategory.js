@@ -109,6 +109,8 @@ class ListPostCategory extends Component {
     super(props);
     this.state = {
       post: [],
+      code: "",
+      timeWork: "",
     }
   };
 
@@ -118,6 +120,16 @@ class ListPostCategory extends Component {
       let posts = snapshot.val();
       this.setState({post : posts})
     });
+    const refUserworkerCode = dbUser.ref("Report/"+this.props.user+"/5-WorkCode")
+    refUserworkerCode.on("value", (snapshot) => {
+      let code  = snapshot.val();
+      this.setState({code : code})
+    });
+    const refUserTime = dbUser.ref("Report/"+this.props.user+"/6-TimeWork")
+    refUserTime.on("value", (snapshot) => {
+      let time  = snapshot.val();
+      this.setState({timeWork : time})
+    });
   }
 
   render() {
@@ -126,6 +138,8 @@ class ListPostCategory extends Component {
         <div className="NavWorker">
           <header style={{display:"table-cell", verticalAlign:"middle"}}>
             <div className="divWorkerN">The Categorized Posts of {this.props.wokerId}</div>
+            <div className="divWorkerN" style={{color:"black"}}>Time Worked: {this.state.timeWork}</div>
+            <div style={{float:"right", padding:"2px", marginRight:"4%"}}>Work-Code: {this.state.code}</div>
           </header>
         </div>
         <div className="DivPostCategory">
