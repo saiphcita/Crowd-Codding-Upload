@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../CSS/PostAndCategory.css';
 import { Link } from 'react-router-dom';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import Dropdown from './Dropdown'
 import { dbUser, refAllUsers } from './DataBase.js'
 
 class SelectForWorker extends Component {
@@ -145,9 +146,10 @@ class ListPostCategory extends Component {
         <div className="DivPostCategory">
           <div className="titleList">
             <li style={{width:"4%", maxWidth:"4%"}}>No.</li>
-            <li style={{width:"72%", maxWidth:"72%", textAlign:"left", paddingLeft:"8px"}}>Posts</li>
+            <li style={{width:"64%", maxWidth:"64%", textAlign:"left", paddingLeft:"8px"}}>Posts</li>
             <li style={{width:"16%", maxWidth:"16%"}}>Category</li>
             <li style={{width:"8%", maxWidth:"8%"}}>Time</li>
+            <li style={{width:"8%", maxWidth:"8%"}}>History</li>
           </div>
           {this.state.post.map((val, ind) =>{
             var category = <li style={{width:"16%", maxWidth:"16%"}}>{val.category}</li>
@@ -172,9 +174,10 @@ class ListPostCategory extends Component {
             return (
               <div key={ind} className="NCClist">
                 <li style={{width:"4%", maxWidth:"4%"}}>{ind+1}</li>
-                <li style={{width:"72%", maxWidth:"72%", textAlign:"left", paddingLeft:"8px"}}>{val.post}</li>
+                <li style={{width:"64%", maxWidth:"64%", textAlign:"left", paddingLeft:"8px"}}>{val.post}</li>
                 {category}
                 <li style={{width:"8%", maxWidth:"8%"}}>{fancyTimeFormat(val.time)}</li>
+                <li style={{width:"8%", maxWidth:"8%"}}><Dropdown numeroPost={ind+1} arrayHistory={val.history}/></li>
               </div>
             )
           })}
