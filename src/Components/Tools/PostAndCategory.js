@@ -145,8 +145,9 @@ class ListPostCategory extends Component {
         <div className="DivPostCategory">
           <div className="titleList">
             <li style={{width:"4%", maxWidth:"4%"}}>No.</li>
-            <li style={{width:"80%", maxWidth:"80%", textAlign:"left", paddingLeft:"8px"}}>Posts</li>
+            <li style={{width:"72%", maxWidth:"72%", textAlign:"left", paddingLeft:"8px"}}>Posts</li>
             <li style={{width:"16%", maxWidth:"16%"}}>Category</li>
+            <li style={{width:"8%", maxWidth:"8%"}}>Time</li>
           </div>
           {this.state.post.map((val, ind) =>{
             var category = <li style={{width:"16%", maxWidth:"16%"}}>{val.category}</li>
@@ -155,11 +156,25 @@ class ListPostCategory extends Component {
             }else{
               category = <li style={{width:"16%", maxWidth:"16%"}}>{val.category}</li>
             }
+
+            var fancyTimeFormat = (time) =>{  
+              var hrs = ~~(time / 3600);
+              var mins = ~~((time % 3600) / 60);
+              var secs = ~~time % 60;
+              var ret = "";
+    
+              if (hrs > 0) {  ret += "" + hrs + ":" + (mins < 10 ? "0" : "");  };
+              ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+              ret += "" + secs;
+              return ret;
+            }
+
             return (
               <div key={ind} className="NCClist">
                 <li style={{width:"4%", maxWidth:"4%"}}>{ind+1}</li>
-                <li style={{width:"80%", maxWidth:"80%", textAlign:"left", paddingLeft:"8px"}}>{val.post}</li>
+                <li style={{width:"72%", maxWidth:"72%", textAlign:"left", paddingLeft:"8px"}}>{val.post}</li>
                 {category}
+                <li style={{width:"8%", maxWidth:"8%"}}>{fancyTimeFormat(val.time)}</li>
               </div>
             )
           })}
